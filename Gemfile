@@ -51,3 +51,4 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'active_model_serializers', '0.9.2'
