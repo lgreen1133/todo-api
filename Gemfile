@@ -52,3 +52,7 @@ group :development, :test do
 end
 
 gem 'active_model_serializers', '0.9.2'
+
+gem 'devise'
+
+gem 'bootstrap-sass'
