@@ -23,7 +23,7 @@ class Api::UsersController < ApiController
 
       render json: {}, status: :no_content
     rescue ActiveRecord::RecordNotFound
-      render json => {}, :status => :not_found 
+      render json: {}, :status => :not_found 
     end
   end 
 

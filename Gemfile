@@ -56,3 +56,5 @@ gem 'active_model_serializers', '0.9.3'
 gem 'devise'
 
 gem 'bootstrap-sass'
+
+gem 'angularjs-rails'
