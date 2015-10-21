@@ -1,5 +1,10 @@
 class Api::ListsController < ApiController
-  before_action :authenticated? 
+  before_action :authenticated?
+
+  def index
+    lists = current_user.lists
+    render json: lists
+  end
 
   def create
     list = List.new(list_params)
@@ -25,16 +30,16 @@ class Api::ListsController < ApiController
       list = List.find(params[:id])
       list.destroy 
 
-      render json: {}, status: :no_content
+      render json: {success: true} #, status: :no_content
     rescue ActiveRecord::RecordNotFound
-      render :json => {}, :status => :not_found 
+      render json: {success: false}, :status => :not_found
     end
   end
 
   private
 
   def list_params
-    params.require(:list).permit(:name, :permissions)
+    params.require(:list).permit(:name, :permissions, :complete)
   end
 
 end

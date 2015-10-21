@@ -23,11 +23,11 @@ class Api::ItemsController < ApiController
   def destroy 
     begin 
       item = Item.find(params[:id])
-      item.destroy 
+      item.destroy
 
-      render json: {}, status: :no_content
+      render json: {success: true} #, status: :no_content
     rescue ActiveRecord::RecordNotFound
-      render json => {}, :status => :not_found
+      render json: {success: false}, :status => :not_found
     end
   end 
 

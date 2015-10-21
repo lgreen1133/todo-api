@@ -1,1 +1,54 @@
-<h1>Open Todo API</h1>
+<div class="container">
+  <h2>My Todo Lists</h2>
+
+  <div ng-controller="TodoListController as todoList">
+    <input name="user_id" id="user_id" type="hidden" value="<%= current_user.id if current_user.present? %>">
+    <span>{{todoList.remaining()}} of {{todoList.todos.length}} lists remaining</span>
+    [ <a href="" ng-click="todoList.remove()">Remove</a> ]
+
+    <div ng-repeat="todo in todoList.todos">
+      <a href="" ng-show="!showLists" ng-click="showLists=!showLists">+</a>
+      <a href="" ng-show="showLists" ng-click="showLists=!showLists">-</a>
+      <a href="" ng-click="showLists=!showLists">{{todo.name}}</a> {{todo.permissions}}
+
+      <div ng-show="showLists" class="col-lg-8 col-lg-offset-2">
+        <input type="checkbox" ng-model="todo.complete">
+        <span class="complete-{{todo.complete}}">Mark This Box When Completed</span>
+
+        <ul class="unstyled" ng-repeat="item in todo.items">
+          <input type="checkbox" ng-model="item.complete">
+          <span class="complete-{{item.complete}}">{{item.name}}</span>
+        </ul>   
+
+          <ul class="unstyled">
+            <form ng-submit="todoList.addItem(todo)">
+              <input type="text" ng-model="todo.newItem" size="20" placeholder="Add New Item">
+              <input class="btn-sm" type="submit" value="add">
+            </form>
+          </ul>
+      </div>
+    </div>
+
+    <form ng-submit="todoList.addTodo()">
+      <input type="text" ng-model="todoList.todoText"  size="30"
+             placeholder="Add new List here">
+      <input class="btn-primary" type="submit" value="add">
+
+      <label>
+        <input type="radio" name="permissions"
+          value="private" ng-model="todoList.permissions" />
+          private
+      </label>
+      <label>
+        <input type="radio" name="permissions"
+        value="viewable" ng-model="todoList.permissions" />
+        viewable
+      </label>
+      <label>
+        <input type="radio" name="permissions"
+        value="open" ng-model="todoList.permissions" />
+        open
+      </label>
+    </form>
+  </div>
+</div>
