@@ -8,6 +8,9 @@ class Api::ListsController < ApiController
 
   def create
     list = List.new(list_params)
+
+    authorize list 
+
     list.user = User.find(params[:user_id])
       if list.save
         render json: list
@@ -18,6 +21,9 @@ class Api::ListsController < ApiController
 
   def update
     list = List.find(params[:id])
+
+    authorize list 
+
     if list.update(list_params)
       render json: list 
     else 
@@ -28,7 +34,11 @@ class Api::ListsController < ApiController
   def destroy
     begin
       list = List.find(params[:id])
-      list.destroy 
+      if authorize list
+        list.destroy
+      else
+        render json: {success: false}
+      end
 
       render json: {success: true} #, status: :no_content
     rescue ActiveRecord::RecordNotFound

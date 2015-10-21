@@ -5,4 +5,8 @@ class List < ActiveRecord::Base
   validates :name, presence: true
   validates :permissions, inclusion: { in: %w(private viewable open),
     message: "%{value} is not valid" }
+
+  def public?
+    permissions == 'open'
+  end
 end
