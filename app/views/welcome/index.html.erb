@@ -7,13 +7,16 @@
     [ <a href="" ng-click="todoList.remove()">Remove</a> ]
 
     <div ng-repeat="todo in todoList.todos">
-      <a href="" ng-show="!showLists" ng-click="showLists=!showLists">+</a>
-      <a href="" ng-show="showLists" ng-click="showLists=!showLists">-</a>
-      <a href="" ng-click="showLists=!showLists">{{todo.name}}</a> {{todo.permissions}}
+      <input type="checkbox" ng-model="todo.complete">
+      <span class="complete-{{todo.complete}}">
+        <a href="" ng-show="!showLists" ng-click="showLists=!showLists">+</a>
+        <a href="" ng-show="showLists" ng-click="showLists=!showLists">-</a>
+        <a href="" ng-click="showLists=!showLists">{{todo.name}}</a> {{todo.permissions}}
+      </span>
 
       <div ng-show="showLists" class="col-lg-8 col-lg-offset-2">
-        <input type="checkbox" ng-model="todo.complete">
-        <span class="complete-{{todo.complete}}">Mark This Box When Completed</span>
+        
+        
 
         <ul class="unstyled" ng-repeat="item in todo.items">
           <input type="checkbox" ng-model="item.complete">

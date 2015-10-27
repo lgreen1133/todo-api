@@ -4,6 +4,8 @@ class Api::ItemsController < ApiController
   def create
     item = Item.new(item_params)
     item.list = List.find(params[:list_id])
+
+    authorize item 
       if item.save
         render json: item 
       else
@@ -13,6 +15,7 @@ class Api::ItemsController < ApiController
 
   def update
     item = Item.find(params[:id])
+    authorize item 
     if item.update(item_params)
       render json: item 
     else 
@@ -23,6 +26,7 @@ class Api::ItemsController < ApiController
   def destroy 
     begin 
       item = Item.find(params[:id])
+      authorize item 
       item.destroy
 
       render json: {success: true} #, status: :no_content

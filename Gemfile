@@ -58,3 +58,5 @@ gem 'devise'
 gem 'bootstrap-sass'
 
 gem 'angularjs-rails'
+
+gem 'pundit'
