@@ -3,7 +3,7 @@ class Api::ListsController < ApiController
 
   def index
     if params[:name].present?
-      lists = List.joins(:items).where(
+      lists = current_user.lists.joins(:items).where(
         'lower(lists.name) LIKE ? or lower(items.name) LIKE ?', 
         "%#{params[:name].downcase}%",
         "%#{params[:name].downcase}%"
