@@ -30,6 +30,7 @@
       </div>
     </div>
 
+    <br>
     <form ng-submit="todoList.addTodo()">
       <input type="text" ng-model="todoList.todoText"  size="30"
              placeholder="Add new List here">
@@ -53,10 +54,12 @@
     </form>
   </div>
 
+  <br>
+  <br>
   <%= form_tag api_lists_path, :method => 'get', :id => "api_lists_search" do %>
     <p>
-      <%= text_field_tag :name, params[:name] %>
-      <%= submit_tag "Search", :name => nil %>
+      <%= text_field_tag :name, params[:name], placeholder: 'Search...' %>
+      <%= submit_tag "Go", :name => nil %>
     </p>
   <% end %>
 
