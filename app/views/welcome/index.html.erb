@@ -15,8 +15,6 @@
       </span>
 
       <div ng-show="showLists" class="col-lg-8 col-lg-offset-2">
-        
-        
 
         <ul class="unstyled" ng-repeat="item in todo.items">
           <input type="checkbox" ng-model="item.complete">
@@ -32,6 +30,7 @@
       </div>
     </div>
 
+    <br>
     <form ng-submit="todoList.addTodo()">
       <input type="text" ng-model="todoList.todoText"  size="30"
              placeholder="Add new List here">
@@ -54,4 +53,14 @@
       </label>
     </form>
   </div>
+
+  <br>
+  <br>
+  <%= form_tag api_lists_path, :method => 'get', :id => "api_lists_search" do %>
+    <p>
+      <%= text_field_tag :name, params[:name], placeholder: 'Search...' %>
+      <%= submit_tag "Go", :name => nil %>
+    </p>
+  <% end %>
+
 </div>

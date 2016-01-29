@@ -2,8 +2,16 @@ class Api::ListsController < ApiController
   before_action :authenticated?
 
   def index
-    lists = current_user.lists
-    render json: lists
+    if params[:name].present?
+      lists = current_user.lists.joins(:items).where(
+        'lower(lists.name) LIKE ? or lower(items.name) LIKE ?', 
+        "%#{params[:name].downcase}%",
+        "%#{params[:name].downcase}%"
+        )
+    else
+      lists = current_user.lists
+    end
+      render json: lists
   end
 
   def create

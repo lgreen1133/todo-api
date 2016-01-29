@@ -9,4 +9,5 @@ class List < ActiveRecord::Base
   def public?
     permissions == 'open'
   end
+
 end
