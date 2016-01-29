@@ -60,3 +60,5 @@ gem 'bootstrap-sass'
 gem 'angularjs-rails'
 
 gem 'pundit'
+
+gem 'faker'
