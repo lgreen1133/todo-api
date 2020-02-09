@@ -9,14 +9,14 @@ class ApplicationController < ActionController::Base
     rescue_from Pundit::NotAuthorizedError do |exception|
         # redirect_to root_url, alert: exception.message
         render json: {success: false, alert: exception.message}
-    end 
+    end
 
-  protected 
-  
+  protected
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :username
-    devise_parameter_sanitizer.for(:sign_in) << :username
-    devise_parameter_sanitizer.for(:account_update) << :username
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
   def authenticated?

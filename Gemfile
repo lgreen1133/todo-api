@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
-
+ruby "2.6.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.10'
 
-group :production do 
+group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
 
-group :development do 
-  gem 'sqlite3'
+group :development do
+  gem 'sqlite3', '~> 1.3.6'
 end
 
 # Use SCSS for stylesheets
@@ -48,10 +48,10 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
 end
 
-gem 'active_model_serializers', '0.9.3'
+gem 'active_model_serializers', '0.10'
 
 gem 'devise'
 
